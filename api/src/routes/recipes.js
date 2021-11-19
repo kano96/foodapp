@@ -16,6 +16,7 @@ const getApi = async (name) => {
         name: r.title,
         img: r.image,
         diets: r.diets,
+        type: r.dishTypes,
       }));
     return search.length ? search : [];
   } else {
@@ -24,6 +25,7 @@ const getApi = async (name) => {
       name: r.title,
       img: r.image,
       diets: r.diets,
+      type: r.dishTypes,
     }));
     return info;
   }
@@ -76,12 +78,48 @@ router.get("/recipes", async (req, res) => {
   }
 });
 
-const getRApi = async (id) => {
-  const recipe = await fetch(
+const getRApi = (id) => {
+  const recipe = fetch(
     `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
-  );
+  )
+    .then((r) => {
+      return {
+        id: r.id,
+        name: r.title,
+        img: r.image,
+        type: r.dishTypes,
+        diets: r.diets,
+        summary: r.summary,
+        score: r.spoonacularScore,
+        healthScore: r.healthScore,
+        steps: r.analyzedInstructions[0].steps.map((s) => s.step),
+      };
+    })
+    .catch((reason) => {
+      return { msg: `falló por ${reason}` };
+    });
+  return recipe;
 };
 
-router.get("/recipes/:id", (req, res) => {});
+const getRDB = async (id) => {
+  const recipe = await Recipe.findByPk(id, { include: Diet });
+  return recipe ? recipe : null;
+};
+
+router.get("/recipes/:id", (req, res) => {
+  const { id } = req.params;
+  const num = parseInt(id);
+  if (num === NaN) {
+    const result = getRDB(id);
+    return result
+      ? res.status(200).json(result)
+      : res.status(404).send({ msg: "No se encontró la receta" });
+  } else {
+    const result = getRApi(num);
+    return result
+      ? res.status(200).json(result)
+      : res.status(404).send({ msg: "No se encontró la receta" });
+  }
+});
 
 module.exports = router;
