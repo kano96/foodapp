@@ -30,59 +30,59 @@ conn.sync({ force: true }).then(() => {
   var gluten = Diet.create({
     name: "Gluten Free",
     description:
-      "Eliminating gluten means avoiding wheat, barley, rye, and other gluten-containing grains and foods made from them (or that may have been cross contaminated).",
+      "Eliminar el gluten significa evitar el trigo, la cebada, el centeno y otros cereales que contienen gluten y los alimentos elaborados con ellos (o que pueden haber sido contaminados de forma cruzada).",
   });
 
   var ketogenic = Diet.create({
     name: "Ketogenic",
     description:
-      "The keto diet is based more on the ratio of fat, protein, and carbs in the diet rather than specific ingredients. Generally speaking, high fat, protein-rich foods are acceptable and high carbohydrate foods are not. The formula we use is 55-80% fat content, 15-35% protein content, and under 10% of carbohydrates.",
+      "La dieta cetogénica se basa más en la proporción de grasas, proteínas y carbohidratos en la dieta que en ingredientes específicos. En términos generales, los alimentos ricos en grasas y proteínas son aceptables y los alimentos ricos en carbohidratos no lo son. La fórmula que utilizamos tiene un contenido de grasa del 55-80%, un contenido de proteínas del 15-35% y menos del 10% de carbohidratos. ",
   });
 
   var vegetarian = Diet.create({
     name: "Vegetarian",
     description:
-      "No ingredients may contain meat or meat by-products, such as bones or gelatin.",
+      "Ningún ingrediente puede contener carne o subproductos cárnicos, como huesos o gelatina.",
   });
   var lacto_vegetarian = Diet.create({
     name: "Lacto-Vegetarian",
     description:
-      "All ingredients must be vegetarian and none of the ingredients can be or contain egg.",
+      "Todos los ingredientes deben ser vegetarianos y ninguno de los ingredientes puede ser o contener huevo.",
   });
   var ovo_vegetarian = Diet.create({
     name: "Ovo-Vegetarian",
     description:
-      "All ingredients must be vegetarian and none of the ingredients can be or contain dairy.",
+      "Todos los ingredientes deben ser vegetarianos y ninguno de los ingredientes puede ser o contener lácteos.",
   });
   var vegan = Diet.create({
     name: "Vegan",
     description:
-      "No ingredients may contain meat or meat by-products, such as bones or gelatin, nor may they contain eggs, dairy, or honey.",
+      "Ningún ingrediente puede contener carne o subproductos cárnicos, como huesos o gelatina, ni puede contener huevos, lácteos o miel.",
   });
   var pescetarian = Diet.create({
     name: "Pescetarian",
     description:
-      "Everything is allowed except meat and meat by-products - some pescetarians eat eggs and dairy, some do not.",
+      "Todo está permitido, excepto la carne y los subproductos cárnicos: algunos pescetarios comen huevos y productos lácteos, otros no.",
   });
   var paleo = Diet.create({
     name: "Paleo",
     description:
-      "Allowed ingredients include meat (especially grass fed), fish, eggs, vegetables, some oils (e.g. coconut and olive oil), and in smaller quantities, fruit, nuts, and sweet potatoes. We also allow honey and maple syrup (popular in Paleo desserts, but strict Paleo followers may disagree). Ingredients not allowed include legumes (e.g. beans and lentils), grains, dairy, refined sugar, and processed foods.",
+      "Los ingredientes permitidos incluyen carne (especialmente de animales alimentados con pasto), pescado, huevos, verduras, algunos aceites (por ejemplo, aceite de coco y de oliva) y, en cantidades más pequeñas, frutas, nueces y batatas. También permitimos miel y jarabe de arce (popular en los postres Paleo, pero los seguidores estrictos de Paleo pueden no estar de acuerdo). Los ingredientes no permitidos incluyen legumbres (por ejemplo, frijoles y lentejas), cereales, productos lácteos, azúcar refinada y alimentos procesados.",
   });
   var primal = Diet.create({
     name: "Primal",
     description:
-      "Very similar to Paleo, except dairy is allowed - think raw and full fat milk, butter, ghee, etc.",
+      "Muy similar a Paleo, excepto que se permiten los lácteos: piense en leche cruda y entera, mantequilla, ghee, etc.",
   });
   var lowFodmap = Diet.create({
     name: "Low FODMAP",
     description:
-      "FODMAP stands for 'fermentable oligo-, di-, mono-saccharides and polyols.' Our ontology knows which foods are considered high in these types of carbohydrates (e.g. legumes, wheat, and dairy products)",
+      "FODMAP significa 'oligosacáridos, di, monosacáridos y polioles fermentables'. Nuestra ontología sabe qué alimentos se consideran ricos en este tipo de carbohidratos (por ejemplo, legumbres, trigo y productos lácteos) ",
   });
   var whole30 = Diet.create({
     name: "Whole30",
     description:
-      "Allowed ingredients include meat, fish/seafood, eggs, vegetables, fresh fruit, coconut oil, olive oil, small amounts of dried fruit and nuts/seeds. Ingredients not allowed include added sweeteners (natural and artificial, except small amounts of fruit juice), dairy (except clarified butter or ghee), alcohol, grains, legumes (except green beans, sugar snap peas, and snow peas), and food additives, such as carrageenan, MSG, and sulfites.",
+      "Los ingredientes permitidos incluyen carne, pescado / mariscos, huevos, verduras, fruta fresca, aceite de coco, aceite de oliva, pequeñas cantidades de frutos secos y nueces / semillas. Los ingredientes no permitidos incluyen edulcorantes agregados (naturales y artificiales, excepto pequeñas cantidades de jugo de fruta), lácteos (excepto mantequilla clarificada o ghee), alcohol, granos, legumbres (excepto judías verdes, guisantes dulces y chícharos) y aditivos alimentarios. , como carragenina, MSG y sulfitos.",
   });
 
   Promise.all([
