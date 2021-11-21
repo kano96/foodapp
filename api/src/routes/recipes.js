@@ -1,33 +1,49 @@
+const { Router } = require("express");
 const { Recipe, Diet } = require("../db.js");
-const router = require("express").Router();
+const axios = require("axios");
+const { Op } = require("sequelize");
 const { API_KEY } = process.env;
 
+const router = Router();
+
 const getApi = async (name) => {
-  const data = await fetch(
-    `https://api.spoonacular.com/recipes/complexSearch?number=100&addRecipeInformation=true&apiKey=${API_KEY}`
-  );
   if (name) {
-    const search = await data
-      .filter((r) => {
-        r.title === name;
+    const data = await axios
+      .get(
+        `https://api.spoonacular.com/recipes/complexSearch?number=100&addRecipeInformation=true&apiKey=${API_KEY}`
+      )
+      .then((response) => response.data.results)
+      .then((data) => {
+        data
+          .filter((r) => r.title.toLowerCase().includes(name.toLowerCase()))
+          .map((r) => ({
+            id: r.id,
+            name: r.title,
+            img: r.image,
+            diets: r.diets,
+            type: r.dishTypes,
+          }));
       })
-      .map((r) => ({
-        id: r.id,
-        name: r.title,
-        img: r.image,
-        diets: r.diets,
-        type: r.dishTypes,
-      }));
-    return search.length ? search : [];
+      .catch((e) => ({ msg: e }));
+    return data;
   } else {
-    const info = await data.map((r) => ({
-      id: r.id,
-      name: r.title,
-      img: r.image,
-      diets: r.diets,
-      type: r.dishTypes,
-    }));
-    return info;
+    console.log("entré a getApi sin name");
+    const data = await fetch(
+      `https://api.spoonacular.com/recipes/complexSearch?number=100&addRecipeInformation=true&apiKey=${API_KEY}`
+    )
+      .then((response) => response.results.json())
+      .then((data) => {
+        data.map((r) => ({
+          id: r.id,
+          name: r.title,
+          img: r.image,
+          diets: r.diets,
+          type: r.dishTypes,
+        }));
+      })
+      .catch((e) => ({ msg: e }));
+    console.log(...data);
+    return data;
   }
 };
 
@@ -42,39 +58,32 @@ const getData = async (name) => {
     });
     return data.length ? data : [];
   } else {
+    console.log("entré a getData sin name");
     const data = await Recipe.findAll({
       include: Diet,
     });
+    console.log(...data);
     return data;
   }
 };
 
-const allData = async (name) => {
-  if (name) {
-    const api = await getApi(name);
-    const db = await getData(name);
-    return [...api, ...db];
-  } else {
-    const api = await getApi();
-    const db = await getData();
-    return [...api, ...db];
-  }
+const allData = async () => {
+  console.log("entré a allData");
+  const apiInfo = await getApi();
+  const dbInfo = await getData();
+  return apiInfo;
 };
 
 router.get("/recipes", async (req, res) => {
-  if (req.query) {
-    const { name } = req.query;
-    const d = await allData(name);
-    d.length
-      ? res.json(d)
-      : res.status(404).send({ msg: "No se encontraron resultados" });
+  const { name } = req.query;
+  if (name) {
+    const search = await allData(name);
+    return res.json(search);
   } else {
-    try {
-      const d = await allData();
-      return res.status(200).json(d);
-    } catch {
-      return res.send({ msg: "Fallo en obtener la info" });
-    }
+    console.log("no hay nombre");
+    const recipes = await allData(name);
+    console.log("recipes " + recipes);
+    return res.json(recipes);
   }
 });
 
