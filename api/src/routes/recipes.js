@@ -28,10 +28,11 @@ const getApi = async (name) => {
     return data;
   } else {
     console.log("entré a getApi sin name");
-    const data = await fetch(
-      `https://api.spoonacular.com/recipes/complexSearch?number=100&addRecipeInformation=true&apiKey=${API_KEY}`
-    )
-      .then((response) => response.results.json())
+    const data = await axios
+      .get(
+        `https://api.spoonacular.com/recipes/complexSearch?number=100&addRecipeInformation=true&apiKey=${API_KEY}`
+      )
+      .then((response) => console.log(response.data.results))
       .then((data) => {
         data.map((r) => ({
           id: r.id,
@@ -40,6 +41,7 @@ const getApi = async (name) => {
           diets: r.diets,
           type: r.dishTypes,
         }));
+        console.log(data.slice(0, 9));
       })
       .catch((e) => ({ msg: e }));
     console.log(...data);
@@ -88,9 +90,10 @@ router.get("/recipes", async (req, res) => {
 });
 
 const getRApi = (id) => {
-  const recipe = fetch(
-    `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
-  )
+  const recipe = axios
+    .get(
+      `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
+    )
     .then((r) => {
       return {
         id: r.id,
