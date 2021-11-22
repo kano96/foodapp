@@ -42,8 +42,7 @@ const allData = async () => {
 
 router.get("/recipes", async (req, res) => {
   const search = await allData();
-  if (typeof search === "string")
-    return res.status(404).send({ msg: `Error: ${search}` });
+  if (typeof search === "string") return res.send({ msg: `Error: ${search}` });
   const { name } = req.query;
   if (name && typeof name === "string") {
     const filteredData = search.filter((r) =>
