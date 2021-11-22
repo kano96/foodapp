@@ -1,0 +1,39 @@
+.land-cont {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-image: url(../../assets/landing.jpg);
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.landcard {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.541);
+  padding: 20px 50px 50px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+}
+.landcard h1 {
+  color: white;
+}
+.landbutton {
+  width: 25%;
+}
+.landbutton button {
+  width: 100%;
+  border: none;
+  padding: 10px 0;
+  background-color: chocolate;
+  font-weight: bolder;
+  border-radius: 25px;
+  cursor: pointer;
+}
+.landbutton button:hover {
+  background-color: coral;
+}
