@@ -1,29 +1,21 @@
 export const GET_ALL_RECIPES = "GET_ALL_RECIPES";
-export const CREATE_HOUSE = "CREATE_HOUSE";
-export const GET_HOUSE = "GET_HOUSE";
-export const DELETE_HOUSE = "DELETE_HOUSE";
+export const CHANGE_PAGE = "CHANGE_PAGE";
+export const GET_TOTAL_PAGES = "GET_TOTAL_PAGES";
 
 export const getRecipes = () => async (dispatch) => {
-  return fetch("http://localhost:3000/recipes")
+  return fetch("http://localhost:3001/recipes")
     .then((response) => response.json())
     .then((json) => dispatch({ type: GET_ALL_RECIPES, payload: json }));
 };
 
-export const getHouse = (id) => async (dispatch) => {
-  return fetch(`http://localhost:3000/houses/${id}`)
-    .then((response) => response.json())
-    .then((json) => dispatch({ type: GET_HOUSE, payload: { ...json } }));
-};
-
-let id = 3;
-
-export const createHouse = (values) => {
-  id += 1;
+// export const getHouse = (id) => async (dispatch) => {
+//   return fetch(`http://localhost:3000/houses/${id}`)
+//     .then((response) => response.json())
+//     .then((json) => dispatch({ type: GET_HOUSE, payload: { ...json } }));
+// };
+export const changePage = (page) => {
   return {
-    type: CREATE_HOUSE,
-    payload: {
-      ...values,
-      id: id,
-    },
+    type: CHANGE_PAGE,
+    payload: page,
   };
 };

@@ -1,37 +1,24 @@
-import {
-  GET_ALL_HOUSES,
-  CREATE_HOUSE,
-  GET_HOUSE,
-  DELETE_HOUSE,
-} from "../actions";
+import { GET_ALL_RECIPES, CHANGE_PAGE } from "../actions";
 
 const initialState = {
-  houses: [],
+  recipes: [],
   house: {},
+  page: 1,
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_ALL_HOUSES:
+    case GET_ALL_RECIPES:
       return {
         ...state,
-        houses: action.payload,
+        recipes: action.payload,
       };
-    case GET_HOUSE:
+    case CHANGE_PAGE:
       return {
         ...state,
-        house: action.payload,
+        page: action.payload,
       };
-    case CREATE_HOUSE:
-      return {
-        ...state,
-        houses: [...state.houses, action.payload],
-      };
-    case DELETE_HOUSE:
-      return {
-        ...state,
-        houses: state.houses.filter((house) => house.id !== action.payload),
-      };
+
     default:
       return state;
   }
