@@ -11,7 +11,7 @@ const getTypes = async () => {
 router.get("/types", async (req, res) => {
   const data = await getTypes();
   data.length
-    ? res.status(200).send(data)
+    ? res.status(200).json(data)
     : res.status(404).send({ msg: "No se encontraron los tipos" });
 });
 
