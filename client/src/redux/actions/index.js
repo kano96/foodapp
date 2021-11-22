@@ -1,15 +1,15 @@
-export const GET_ALL_HOUSES = "GET_ALL_HOUSES";
+export const GET_ALL_RECIPES = "GET_ALL_RECIPES";
 export const CREATE_HOUSE = "CREATE_HOUSE";
 export const GET_HOUSE = "GET_HOUSE";
 export const DELETE_HOUSE = "DELETE_HOUSE";
 
-export const getAllHouses = () => (dispatch) => {
-  return fetch("http://localhost:3000/houses")
+export const getRecipes = () => async (dispatch) => {
+  return fetch("http://localhost:3000/recipes")
     .then((response) => response.json())
-    .then((json) => dispatch({ type: GET_ALL_HOUSES, payload: json }));
+    .then((json) => dispatch({ type: GET_ALL_RECIPES, payload: json }));
 };
 
-export const getHouse = (id) => (dispatch) => {
+export const getHouse = (id) => async (dispatch) => {
   return fetch(`http://localhost:3000/houses/${id}`)
     .then((response) => response.json())
     .then((json) => dispatch({ type: GET_HOUSE, payload: { ...json } }));
@@ -25,12 +25,5 @@ export const createHouse = (values) => {
       ...values,
       id: id,
     },
-  };
-};
-
-export const deleteHouse = (arg) => {
-  return {
-    type: DELETE_HOUSE,
-    payload: arg,
   };
 };
