@@ -57,49 +57,58 @@ router.get("/recipes", async (req, res) => {
   }
 });
 
-// const getRApi = (id) => {
-//   const recipe = axios
-//     .get(
-//       `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
-//     )
-//     .then((r) => {
-//       return {
-//         id: r.id,
-//         name: r.title,
-//         img: r.image,
-//         type: r.dishTypes,
-//         diets: r.diets,
-//         summary: r.summary,
-//         score: r.spoonacularScore,
-//         healthScore: r.healthScore,
-//         steps: r.analyzedInstructions[0].steps.map((s) => s.step),
-//       };
-//     })
-//     .catch((reason) => {
-//       return { msg: `falló por ${reason}` };
-//     });
-//   return recipe;
-// };
+const getApiById = async (numId) => {
+  const recipe = await axios.get(
+    `https://api.spoonacular.com/recipes/${numId}/information?apiKey=${API_KEY}`
+  );
+  const {
+    id,
+    title,
+    image,
+    dishTypes,
+    diets,
+    summary,
+    spoonacularScore,
+    healthScore,
+    instructions,
+  } = await recipe.data;
+  const recipeData = {
+    id,
+    name: title,
+    img: image,
+    type: dishTypes,
+    diets,
+    summary,
+    score: spoonacularScore,
+    healthScore,
+    steps: instructions,
+  };
+  return recipeData;
+};
 
-// const getRDB = async (id) => {
-//   const recipe = await Recipe.findByPk(id, { include: Diet });
-//   return recipe ? recipe : null;
-// };
+const getDBById = async (id) => {
+  const recipe = await Recipe.findByPk(id, { include: Diet });
+  return recipe ? recipe : null;
+};
 
-// router.get("/recipes/:id", (req, res) => {
-//   const { id } = req.params;
-//   const num = parseInt(id);
-//   if (num === NaN) {
-//     const result = getRDB(id);
-//     return result
-//       ? res.status(200).json(result)
-//       : res.status(404).send({ msg: "No se encontró la receta" });
-//   } else {
-//     const result = getRApi(num);
-//     return result
-//       ? res.status(200).json(result)
-//       : res.status(404).send({ msg: "No se encontró la receta" });
-//   }
-// });
+router.get("/recipes/:id", async (req, res) => {
+  const { id } = req.params;
+  const num = parseInt(id);
+  if (num === NaN) {
+    const result = await getDBById(id);
+    return result
+      ? res.status(200).send(result)
+      : res.status(404).send({ msg: "No se encontró la receta" });
+  } else {
+    try {
+      const result = await getApiById(num);
+      return result
+        ? res.status(200).send(result)
+        : res.status(404).send({ msg: "No se encontró la receta" });
+    } catch (e) {
+      res.send({ msg: `Error: ${e}` });
+    }
+  }
+});
 
 module.exports = router;
