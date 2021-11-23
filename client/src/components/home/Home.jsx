@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipes, changePage } from "../../redux/actions";
+import { getRecipes, changePage, filtrar } from "../../redux/actions";
 import "./Home.css";
 import Paginacion from "./Paginacion";
 import CardRecipe from "./CardRecipe";
+import Filtrado from "./Filtrado";
 
 function Home() {
   const dispatch = useDispatch();
@@ -22,23 +23,45 @@ function Home() {
     actualPage * recipePerPage
   );
 
+  //Filtrado
+  const filtros = useSelector((state) => state.filtros);
+
+  useEffect(() => {
+    if (filtros.length > 0) {
+      filtrar();
+    }
+  }, [filtros]);
+
   return (
     <div className="main">
       <div className="title-main">
         <h1>Todas las recetas</h1>
       </div>
-      <div className="recipes">
-        {recipes.map((r) => (
-          <CardRecipe name={r.name} img={r.img} type={r.type} diets={r.diets} />
-        ))}
-      </div>
+      <Filtrado />
       <div className="options"></div>
-      <Paginacion
-        total={total}
-        onChange={(page) => {
-          dispatch(changePage(page));
-        }}
-      />
+      <div className="recipes">
+        {recipes.length ? (
+          recipes.map((r) => (
+            <CardRecipe
+              name={r.name}
+              img={r.img}
+              type={r.type}
+              diets={r.diets}
+              key={r.name}
+            />
+          ))
+        ) : (
+          <h1>Cargando...</h1>
+        )}
+      </div>
+      {total !== 0 && (
+        <Paginacion
+          total={total}
+          onChange={(page) => {
+            dispatch(changePage(page));
+          }}
+        />
+      )}
     </div>
   );
 }
