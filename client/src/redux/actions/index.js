@@ -1,7 +1,5 @@
 export const GET_ALL_RECIPES = "GET_ALL_RECIPES";
 export const CHANGE_PAGE = "CHANGE_PAGE";
-export const ADD_FILTER = "ADD_FILTER";
-export const REMOVE_FILTER = "REMOVE_FILTER";
 export const GET_ALL_DIET_TYPES = "GET_ALL_DIET_TYPES";
 export const FILTRAR = "FILTRAR";
 
@@ -28,21 +26,9 @@ export const changePage = (page) => {
   };
 };
 
-export const addFilter = (id) => {
-  return {
-    type: ADD_FILTER,
-    payload: id,
-  };
-};
-export const removeFilter = (id) => {
-  return {
-    type: REMOVE_FILTER,
-    payload: id,
-  };
-};
-
-export const filtrar = () => {
+export const filtrar = (diet) => {
   return {
     type: FILTRAR,
+    payload: diet,
   };
 };

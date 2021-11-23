@@ -23,15 +23,6 @@ function Home() {
     actualPage * recipePerPage
   );
 
-  //Filtrado
-  const filtros = useSelector((state) => state.filtros);
-
-  useEffect(() => {
-    if (filtros.length > 0) {
-      filtrar();
-    }
-  }, [filtros]);
-
   return (
     <div className="main">
       <div className="title-main">

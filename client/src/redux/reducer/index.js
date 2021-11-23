@@ -1,8 +1,6 @@
 import {
   GET_ALL_RECIPES,
   CHANGE_PAGE,
-  ADD_FILTER,
-  REMOVE_FILTER,
   GET_ALL_DIET_TYPES,
   FILTRAR,
 } from "../actions";
@@ -11,7 +9,6 @@ const initialState = {
   recipes: [],
   diets: [],
   recipe: [],
-  filtros: [],
   page: 1,
 };
 
@@ -33,31 +30,22 @@ const rootReducer = (state = initialState, action) => {
         diets: action.payload,
       };
 
-    case ADD_FILTER:
+    case FILTRAR:
+      const all = state.recipes;
+      const filter =
+        action.payload === "All"
+          ? all
+          : all.filter((r) => {
+              for (let diet of r.diets) {
+                if (diet.toLowerCase() === action.payload.toLowerCase())
+                  return true;
+              }
+              return false;
+            });
       return {
         ...state,
-        filtros: [...state.filtros, action.payload],
+        recipes: filter,
       };
-    case REMOVE_FILTER:
-      return {
-        ...state,
-        filtros: state.filtros.filter((f) => f !== action.payload),
-      };
-    // case FILTRAR:
-    //   return {
-    //     ...state,
-    //     recipes: state.recipes.filter((r) => {
-    //       if (
-    //         r.diets.forEach((d) =>
-    //           d
-    //             .toLowerCase()
-    //             .includes(state.filtros.forEach((f) => f.toLowerCase()))
-    //         )
-    //       ) {
-    //         return r;
-    //       }
-    //     }),
-    // };
     default:
       return state;
   }
