@@ -34,7 +34,6 @@ function Home() {
       </div>
       <div className="options"></div>
       <Paginacion
-        actual={actualPage}
         total={total}
         onChange={(page) => {
           dispatch(changePage(page));
