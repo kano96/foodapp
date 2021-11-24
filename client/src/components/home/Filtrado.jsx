@@ -25,6 +25,8 @@ function Filtrado() {
         <option value="pescatarian">Pescetarian</option>
         <option value="paleolithic">Paleo</option>
         <option value="primal">Primal</option>
+        <option value="fodmap friendly">Low FODMAP</option>
+        <option value="whole 30">Whole30</option>
       </select>
     </div>
   );
