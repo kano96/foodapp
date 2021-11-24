@@ -13,14 +13,3 @@
 .logo img {
   width: 100%;
 }
-
-.navinput {
-  margin-right: 20px;
-  padding: 5px 15px;
-  outline: none;
-}
-.buttoninput {
-  padding: 5px 15px;
-  border: none;
-  cursor: pointer;
-}

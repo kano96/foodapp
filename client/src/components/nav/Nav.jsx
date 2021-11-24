@@ -1,19 +1,16 @@
 import React from "react";
 import "./Nav.css";
 import logo from "../../assets/logo.png";
+import { NavLink } from "react-router-dom";
 
 const Nav = () => {
-  const handleOnSubmit = () => {};
   return (
     <div className="navbar">
       <div className="logo">
         <img src={logo} alt="Logo" />
       </div>
-      <div className="searchcont">
-        <form action="GET" onSubmit={handleOnSubmit}>
-          <input type="text" name="name" className="navinput" />
-          <input type="submit" value="Buscar receta" className="buttoninput" />
-        </form>
+      <div className="nav">
+        <NavLink to="/recipe"></NavLink>
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ function Sorting({ onChange }) {
           onChange(e);
         }}
       >
-        <option selected value="none">
+        <option disabled="disabled" selected value="none">
           -----
         </option>
         <option value="asc">De A a Z</option>

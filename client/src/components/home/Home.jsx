@@ -12,6 +12,7 @@ import CardRecipe from "./CardRecipe";
 import Filtrado from "./Filtrado";
 import Sorting from "./Sorting";
 import SortingByScore from "./SortingByScore";
+import Search from "./Search";
 
 function Home() {
   const dispatch = useDispatch();
@@ -41,7 +42,9 @@ function Home() {
       <div className="title-main">
         <h1>Recetas</h1>
       </div>
-
+      <div className="buscador">
+        <Search />
+      </div>
       <div className="filtersortingbuttons">
         <Filtrado />
         <Sorting

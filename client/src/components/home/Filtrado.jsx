@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { filtrar } from "../../redux/actions/index";
+import { filtrar, changePage } from "../../redux/actions/index";
 
 function Filtrado() {
   const dispatch = useDispatch();
@@ -9,6 +9,7 @@ function Filtrado() {
     e.preventDefault();
     const diet = e.target.value;
     dispatch(filtrar(diet));
+    dispatch(changePage(1));
   }
 
   return (

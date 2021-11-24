@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import Landing from "./components/landing/Landing";
 import Home from "./components/home/Home";
 import Nav from "./components/nav/Nav";
+import Recipe from "./components/recipeDetail/Recipe.jsx";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Route exact path="/" component={Landing} />
       <Route path="/home" component={Nav} />
       <Route exact path="/home" component={Home} />
+      <Route exact path="recipe" component={Recipe} />
     </div>
   );
 }
