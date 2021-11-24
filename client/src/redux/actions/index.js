@@ -3,6 +3,7 @@ export const CHANGE_PAGE = "CHANGE_PAGE";
 export const GET_ALL_DIET_TYPES = "GET_ALL_DIET_TYPES";
 export const FILTRAR = "FILTRAR";
 export const SORT_BY_NAME = "SORT_BY_NAME";
+export const SORT_BY_SCORE = "SORT_BY_SCORE";
 
 export const getRecipes = () => async (dispatch) => {
   return fetch("http://localhost:3001/recipes")
@@ -34,9 +35,15 @@ export const filtrar = (diet) => {
   };
 };
 
-export const sortByName = (orderedRecipes) => {
+export const sortByName = (type) => {
   return {
     type: SORT_BY_NAME,
-    payload: orderedRecipes,
+    payload: type,
+  };
+};
+export const sortByScore = (type) => {
+  return {
+    type: SORT_BY_SCORE,
+    payload: type,
   };
 };

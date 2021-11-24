@@ -4,6 +4,7 @@ import {
   GET_ALL_DIET_TYPES,
   FILTRAR,
   SORT_BY_NAME,
+  SORT_BY_SCORE,
 } from "../actions";
 
 const initialState = {
@@ -70,6 +71,15 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         recipes: sortedRecipes,
+      };
+    case SORT_BY_SCORE:
+      const sortedRecipesByScore =
+        action.payload === "asc"
+          ? state.recipes.sort((a, b) => a.score - b.score)
+          : state.recipes.sort((a, b) => b.score - a.score);
+      return {
+        ...state,
+        recipes: sortedRecipesByScore,
       };
     default:
       return state;

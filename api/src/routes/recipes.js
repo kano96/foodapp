@@ -16,7 +16,7 @@ const getApi = async () => {
       img: r.image,
       diets: r.diets,
       type: r.dishTypes,
-      score: r.score,
+      score: r.healthScore,
     };
   });
   return data;
