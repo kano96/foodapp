@@ -35,24 +35,13 @@ function Home() {
       actualPage * recipePerPage
     );
   }
-  // Quitar filtros y orden
-  function handleOnClick() {
-    dispatch(getRecipes());
-    dispatch(changePage(1));
-    setOrden("");
-    setOrdenByScore("");
-  }
 
   return (
     <div className="main">
       <div className="title-main">
         <h1>Recetas</h1>
       </div>
-      <div className="reset">
-        <button onClick={() => handleOnClick()}>
-          Limpiar filtros y ordenado
-        </button>
-      </div>
+
       <div className="filtersortingbuttons">
         <Filtrado />
         <Sorting
@@ -62,7 +51,7 @@ function Home() {
             dispatch(sortByName(type));
             if (type === "asc") setOrden("ascendente");
             if (type === "des") setOrden("descendente");
-            e.target.value = "none";
+            dispatch(changePage(1));
           }}
         />
         <SortingByScore
@@ -72,27 +61,11 @@ function Home() {
             dispatch(sortByScore(type));
             if (type === "asc") setOrdenByScore("ascendente");
             if (type === "des") setOrdenByScore("descendente");
-            e.target.value = "none";
+            dispatch(changePage(1));
           }}
         />
       </div>
-      <div className="enunciado">
-        {orden.length && !ordenByScore.length ? (
-          <h3>Ordenado por nombre {}</h3>
-        ) : (
-          ""
-        )}
-        {ordenByScore.length && !orden.length ? (
-          <h3>Ordenado por score</h3>
-        ) : (
-          ""
-        )}
-        {orden.length && ordenByScore.length ? (
-          <h3>Ordenado por nombre y score</h3>
-        ) : (
-          ""
-        )}
-      </div>
+
       <div className="paginas">
         {total !== 0 && (
           <Paginacion
