@@ -1,0 +1,23 @@
+.pagination {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  text-align: center;
+}
+.paginas {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+.activepage {
+  color: blue;
+  border-bottom: 1px solid blue;
+  cursor: default;
+  padding: 0;
+  margin: 0;
+}
+.inactivepage {
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}

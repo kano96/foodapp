@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import "./Paginacion.css";
 
 function Paginacion({ total, onChange }) {
   const actualPage = useSelector((state) => state.page);
@@ -11,6 +12,7 @@ function Paginacion({ total, onChange }) {
         <p
           onClick={() => onChange(pag)}
           className={actualPage === pag ? "activepage" : "inactivepage"}
+          key={`page${pag}`}
         >
           {pag}
         </p>
@@ -20,10 +22,10 @@ function Paginacion({ total, onChange }) {
   };
   return (
     <div className="pagination">
-      <span>
+      <p>
         Página {actualPage} de {total}
-      </span>
-      {pages()}
+      </p>
+      <div className="paginas">{pages()}</div>
     </div>
   );
 }

@@ -6,6 +6,7 @@ function Filtrado() {
   const dispatch = useDispatch();
 
   function handleOnChange(e) {
+    e.preventDefault();
     const diet = e.target.value;
     dispatch(filtrar(diet));
   }

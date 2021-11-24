@@ -1,15 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipes, changePage } from "../../redux/actions";
+import { getRecipes, changePage, sortByName } from "../../redux/actions";
 import "./Home.css";
 import Paginacion from "./Paginacion";
 import CardRecipe from "./CardRecipe";
 import Filtrado from "./Filtrado";
+import Sorting from "./Sorting";
 
 function Home() {
   const dispatch = useDispatch();
+  const [orden, setOrden] = useState("");
   //Recetas
   const recipePerPage = 9;
+  const allrecipes = useSelector((state) => state.allrecipes);
   useEffect(() => {
     dispatch(getRecipes());
   }, [dispatch]);
@@ -22,37 +25,55 @@ function Home() {
     (actualPage - 1) * recipePerPage,
     actualPage * recipePerPage
   );
+  //Ordenado
 
   return (
     <div className="main">
       <div className="title-main">
-        <h1>Todas las recetas</h1>
+        <h1>Recetas</h1>
       </div>
-      <Filtrado />
-      <div className="options"></div>
+      <div className="filtersortingbuttons">
+        <Filtrado />
+        <Sorting
+          onChange={(e) => {
+            e.preventDefault();
+            const type = e.target.value;
+            dispatch(sortByName(type));
+            setOrden(`Sorted by ${type}`);
+          }}
+        />
+      </div>
+      <div className="paginas">
+        {total !== 0 && (
+          <Paginacion
+            total={total}
+            onChange={(page) => {
+              dispatch(changePage(page));
+            }}
+          />
+        )}
+      </div>
+
       <div className="recipes">
-        {recipes.length ? (
+        {allrecipes.length ? (
           recipes.map((r) => (
             <CardRecipe
               name={r.name}
               img={r.img}
               type={r.type}
               diets={r.diets}
-              key={r.name}
+              key={`recipe:${r.id}`}
             />
           ))
         ) : (
           <h1>Cargando...</h1>
         )}
+        {allrecipes.length && !recipes.length ? (
+          <h2>No hay resultdados</h2>
+        ) : (
+          ""
+        )}
       </div>
-      {total !== 0 && (
-        <Paginacion
-          total={total}
-          onChange={(page) => {
-            dispatch(changePage(page));
-          }}
-        />
-      )}
     </div>
   );
 }

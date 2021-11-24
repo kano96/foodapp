@@ -3,6 +3,7 @@ import {
   CHANGE_PAGE,
   GET_ALL_DIET_TYPES,
   FILTRAR,
+  SORT_BY_NAME,
 } from "../actions";
 
 const initialState = {
@@ -50,6 +51,25 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         recipes: filter,
+      };
+
+    case SORT_BY_NAME:
+      const sortedRecipes =
+        action.payload === "asc"
+          ? state.recipes.sort((a, b) => {
+              if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+              if (b.name.toLowerCase() > a.name.toLowerCase()) return -1;
+              return 0;
+            })
+          : state.recipes.sort((a, b) => {
+              if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+              if (b.name.toLowerCase() > a.name.toLowerCase()) return 1;
+              return 0;
+            });
+
+      return {
+        ...state,
+        recipes: sortedRecipes,
       };
     default:
       return state;
