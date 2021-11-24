@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipes, changePage, filtrar } from "../../redux/actions";
+import { getRecipes, changePage } from "../../redux/actions";
 import "./Home.css";
 import Paginacion from "./Paginacion";
 import CardRecipe from "./CardRecipe";

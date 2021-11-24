@@ -6,6 +6,7 @@ import {
 } from "../actions";
 
 const initialState = {
+  allrecipes: [],
   recipes: [],
   diets: [],
   recipe: [],
@@ -17,6 +18,7 @@ const rootReducer = (state = initialState, action) => {
     case GET_ALL_RECIPES:
       return {
         ...state,
+        allrecipes: action.payload,
         recipes: action.payload,
       };
     case CHANGE_PAGE:
@@ -31,14 +33,17 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case FILTRAR:
-      const all = state.recipes;
+      const all = state.allrecipes;
       const filter =
         action.payload === "All"
           ? all
           : all.filter((r) => {
-              for (let diet of r.diets) {
-                if (diet.toLowerCase() === action.payload.toLowerCase())
-                  return true;
+              if (r.diets.length) {
+                for (let diet of r.diets) {
+                  if (diet.toLowerCase().includes(action.payload.toLowerCase()))
+                    return true;
+                }
+                return false;
               }
               return false;
             });
