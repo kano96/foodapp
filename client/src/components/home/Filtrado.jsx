@@ -1,13 +1,9 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { filtrar, getDietTypes } from "../../redux/actions/index";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { filtrar } from "../../redux/actions/index";
 
 function Filtrado() {
-  const diets = useSelector((state) => state.diets);
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getDietTypes());
-  }, [dispatch]);
 
   function handleOnChange(e) {
     const diet = e.target.value;
@@ -19,8 +15,16 @@ function Filtrado() {
       <label htmlFor="filter">Filtrar por tipo de dieta: </label>
       <select onChange={(e) => handleOnChange(e)}>
         <option value="All">Sin filtro</option>
-        {diets.length &&
-          diets.map((d) => <option value={d.name}>{d.name}</option>)}
+        <option value="gluten free">Gluten Free</option>
+        <option value="ketogenic">Ketogenic</option>
+        <option value="dairy free">Dairy Free</option>
+        <option value="vegetarian">Vegetarian</option>
+        <option value="lacto">Lacto-Vegetarian</option>
+        <option value="ovo">Ovo-Vegetarian</option>
+        <option value="vegan">Vegan</option>
+        <option value="pescatarian">Pescetarian</option>
+        <option value="paleolithic">Paleo</option>
+        <option value="primal">Primal</option>
       </select>
     </div>
   );
