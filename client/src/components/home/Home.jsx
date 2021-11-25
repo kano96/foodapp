@@ -30,7 +30,7 @@ function Home() {
   //Paginacion
   const total = Math.ceil(recipes.length / recipePerPage);
   const actualPage = useSelector((state) => state.page);
-  if (allrecipes.length) {
+  if (recipes.length > 1) {
     recipes = recipes.slice(
       (actualPage - 1) * recipePerPage,
       actualPage * recipePerPage

@@ -1,14 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { getRecipe } from "../../redux/actions";
 import "./Search.css";
 
 function Search() {
-  const handleOnSubmit = () => {};
+  const [name, setName] = useState("");
+  const dispatch = useDispatch();
+  function handleOnSubmit(e) {
+    e.preventDefault();
+    dispatch(getRecipe(name));
+    setName("");
+  }
+  function handleOnChange(e) {
+    e.preventDefault();
+    const type = e.target.value;
+    setName(type);
+  }
   return (
     <div className="searchcont">
-      <form action="GET" onSubmit={handleOnSubmit}>
-        <input type="text" name="name" className="navinput" />
-        <input type="submit" value="Buscar receta" className="buttoninput" />
-      </form>
+      <input
+        type="text"
+        className="navinput"
+        onChange={(e) => handleOnChange(e)}
+        value={name}
+      />
+      <button
+        type="submit"
+        className="buttoninput"
+        onSubmit={(e) => {
+          handleOnSubmit(e);
+        }}
+      >
+        Buscar receta
+      </button>
     </div>
   );
 }

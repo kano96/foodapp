@@ -4,6 +4,7 @@ export const GET_ALL_DIET_TYPES = "GET_ALL_DIET_TYPES";
 export const FILTRAR = "FILTRAR";
 export const SORT_BY_NAME = "SORT_BY_NAME";
 export const SORT_BY_SCORE = "SORT_BY_SCORE";
+export const GET_RECIPE = "GET_RECIPE";
 
 export const getRecipes = () => async (dispatch) => {
   return fetch("http://localhost:3001/recipes")
@@ -16,11 +17,12 @@ export const getDietTypes = () => async (dispatch) => {
     .then((json) => dispatch({ type: GET_ALL_DIET_TYPES, payload: json }));
 };
 
-// export const getHouse = (id) => async (dispatch) => {
-//   return fetch(`http://localhost:3000/houses/${id}`)
-//     .then((response) => response.json())
-//     .then((json) => dispatch({ type: GET_HOUSE, payload: { ...json } }));
-// };
+export const getRecipe = (name) => async (dispatch) => {
+  return fetch(`http://localhost:3001/recipes?name=${name}`)
+    .then((response) => response.json())
+    .then((json) => dispatch({ type: GET_RECIPE, payload: json }))
+    .catch((r) => console.log(r));
+};
 export const changePage = (page) => {
   return {
     type: CHANGE_PAGE,

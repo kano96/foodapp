@@ -5,6 +5,7 @@ import {
   FILTRAR,
   SORT_BY_NAME,
   SORT_BY_SCORE,
+  GET_RECIPE,
 } from "../actions";
 
 const initialState = {
@@ -33,7 +34,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         diets: action.payload,
       };
-
+    case GET_RECIPE:
+      return {
+        ...state,
+        recipes: action.payload,
+      };
     case FILTRAR:
       const all = state.allrecipes;
       const filter =
