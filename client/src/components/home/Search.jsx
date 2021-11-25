@@ -9,7 +9,6 @@ function Search() {
   function handleOnSubmit(e) {
     e.preventDefault();
     dispatch(getRecipe(name));
-    setName("");
   }
   function handleOnChange(e) {
     e.preventDefault();
@@ -27,7 +26,7 @@ function Search() {
       <button
         type="submit"
         className="buttoninput"
-        onSubmit={(e) => {
+        onClick={(e) => {
           handleOnSubmit(e);
         }}
       >

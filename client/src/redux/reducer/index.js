@@ -19,10 +19,13 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_RECIPES:
+      const result = state.allrecipes.length
+        ? state.allrecipes
+        : action.payload;
       return {
         ...state,
-        allrecipes: action.payload,
-        recipes: action.payload,
+        allrecipes: result,
+        recipes: result,
       };
     case CHANGE_PAGE:
       return {

@@ -36,6 +36,11 @@ function Home() {
       actualPage * recipePerPage
     );
   }
+  //Mostrar todas las recetas
+  function handleClear(e) {
+    e.preventDefault();
+    dispatch(getRecipes());
+  }
 
   return (
     <div className="main">
@@ -44,6 +49,11 @@ function Home() {
       </div>
       <div className="buscador">
         <Search />
+      </div>
+      <div className="clear">
+        <button onClick={(e) => handleClear(e)}>
+          Mostrar todas las recetas
+        </button>
       </div>
       <div className="filtersortingbuttons">
         <Filtrado />
