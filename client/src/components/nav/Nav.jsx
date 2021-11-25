@@ -1,16 +1,20 @@
 import React from "react";
 import "./Nav.css";
 import logo from "../../assets/logo.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 const Nav = () => {
   return (
     <div className="navbar">
       <div className="logo">
-        <img src={logo} alt="Logo" />
+        <Link to="/home">
+          <img src={logo} alt="Logo" />
+        </Link>
       </div>
       <div className="nav">
-        <NavLink to="/recipe"></NavLink>
+        <NavLink to="/home/create" style={{ textDecoration: "none" }}>
+          Create Recipe
+        </NavLink>
       </div>
     </div>
   );

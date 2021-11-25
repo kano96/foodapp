@@ -4,12 +4,13 @@ const { Recipe, Diet } = require("../db");
 const router = Router();
 
 router.post("/recipe", async (req, res) => {
-  const { name, summary, score, healthScore, diets, steps } = req.body;
+  const { name, summary, score, healthScore, diets, steps, img } = req.body;
 
   try {
     const newRecipe = await Recipe.create({
       name,
       summary,
+      img,
       score: parseFloat(score),
       healthScore: parseFloat(healthScore),
       steps,

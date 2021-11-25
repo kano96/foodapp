@@ -1,0 +1,48 @@
+.createPage {
+  display: grid;
+  height: calc(100vh - 80px);
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 0.2fr 1.8fr;
+  gap: 0px 50px;
+  grid-template-areas:
+    "title title"
+    "form diets";
+}
+
+.createPage h1 {
+  grid-area: title;
+  margin: 0;
+  padding-top: 10px;
+}
+.form {
+  grid-area: form;
+  display: flex;
+}
+.form form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+
+  width: 100%;
+}
+.forminput {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+.forminput label {
+  align-self: flex-start;
+  font-weight: bold;
+}
+.forminput textarea {
+  resize: none;
+}
+
+.diets {
+  display: flex;
+  flex-direction: column;
+  grid-area: diets;
+
+  align-items: flex-start;
+}
