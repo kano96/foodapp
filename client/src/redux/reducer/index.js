@@ -1,6 +1,7 @@
 import {
   GET_ALL_RECIPES,
   CHANGE_PAGE,
+  SET_ALL_RECIPES,
   GET_ALL_DIET_TYPES,
   FILTRAR,
   SORT_BY_NAME,
@@ -19,12 +20,15 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_RECIPES:
-      const result = state.allrecipes.length
-        ? state.allrecipes
-        : action.payload;
       return {
         ...state,
-        allrecipes: result,
+        allrecipes: action.payload,
+        recipes: action.payload,
+      };
+    case SET_ALL_RECIPES:
+      const result = state.allrecipes.length ? state.allrecipes : [];
+      return {
+        ...state,
         recipes: result,
       };
     case CHANGE_PAGE:
@@ -38,9 +42,10 @@ const rootReducer = (state = initialState, action) => {
         diets: action.payload,
       };
     case GET_RECIPE:
+      const results = action.payload.length ? [] : action.payload;
       return {
         ...state,
-        recipes: action.payload,
+        recipes: results,
       };
     case FILTRAR:
       const all = state.allrecipes;

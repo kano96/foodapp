@@ -5,6 +5,7 @@ export const FILTRAR = "FILTRAR";
 export const SORT_BY_NAME = "SORT_BY_NAME";
 export const SORT_BY_SCORE = "SORT_BY_SCORE";
 export const GET_RECIPE = "GET_RECIPE";
+export const SET_ALL_RECIPES = "SET_ALL_RECIPES";
 
 export const getRecipes = () => async (dispatch) => {
   return fetch("http://localhost:3001/recipes")
@@ -23,6 +24,13 @@ export const getRecipe = (name) => async (dispatch) => {
     .then((json) => dispatch({ type: GET_RECIPE, payload: json }))
     .catch((r) => console.log(r));
 };
+
+export const setAllRecipes = () => {
+  return {
+    type: SET_ALL_RECIPES,
+  };
+};
+
 export const changePage = (page) => {
   return {
     type: CHANGE_PAGE,

@@ -5,6 +5,7 @@ import {
   changePage,
   sortByName,
   sortByScore,
+  setAllRecipes,
 } from "../../redux/actions";
 import "./Home.css";
 import Paginacion from "./Paginacion";
@@ -39,7 +40,7 @@ function Home() {
   //Mostrar todas las recetas
   function handleClear(e) {
     e.preventDefault();
-    dispatch(getRecipes());
+    dispatch(setAllRecipes());
   }
 
   return (
@@ -90,20 +91,19 @@ function Home() {
         )}
       </div>
       <div className="recipes">
-        {allrecipes.length ? (
-          recipes.map((r) => (
-            <CardRecipe
-              name={r.name}
-              img={r.img}
-              type={r.type}
-              diets={r.diets}
-              score={r.score}
-              key={r.name}
-            />
-          ))
-        ) : (
-          <h1>Cargando...</h1>
-        )}
+        {!allrecipes.length && <h1>Cargando...</h1>}
+        {recipes.length
+          ? recipes.map((r) => (
+              <CardRecipe
+                name={r.name}
+                img={r.img}
+                type={r.type}
+                diets={r.diets}
+                score={r.score}
+                key={r.name}
+              />
+            ))
+          : ""}
         {allrecipes.length && !recipes.length ? (
           <h2>No hay resultdados</h2>
         ) : (
