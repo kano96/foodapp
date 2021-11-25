@@ -7,6 +7,7 @@ import {
   SORT_BY_NAME,
   SORT_BY_SCORE,
   GET_RECIPE,
+  GET_RECIPE_BY_ID,
 } from "../actions";
 
 const initialState = {
@@ -15,6 +16,7 @@ const initialState = {
   diets: [],
   recipe: [],
   page: 1,
+  recipeDetail: {},
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -46,6 +48,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         recipes: results,
+      };
+    case GET_RECIPE_BY_ID:
+      return {
+        ...state,
+        recipeDetail: action.payload,
       };
     case FILTRAR:
       const all = state.allrecipes;

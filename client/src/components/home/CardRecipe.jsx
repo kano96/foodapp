@@ -1,9 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function CardRecipe({ name, img, type, diets, score }) {
+function CardRecipe({ name, img, type, diets, score, id }) {
   return (
     <div className="Card">
-      <h3>{name}</h3>
+      <Link to={`/home/recipe/${id}`}>
+        <h3>{name}</h3>
+      </Link>
       <img src={img} alt="imagen" />
       <h4>{score}</h4>
       <div className="types">

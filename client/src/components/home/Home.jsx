@@ -95,6 +95,7 @@ function Home() {
         {recipes.length
           ? recipes.map((r) => (
               <CardRecipe
+                id={r.id}
                 name={r.name}
                 img={r.img}
                 type={r.type}
