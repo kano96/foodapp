@@ -8,6 +8,7 @@ import {
   setAllRecipes,
 } from "../../redux/actions";
 import "./Home.css";
+import plate from "../../assets/plate.jpg";
 import Paginacion from "./Paginacion";
 import CardRecipe from "./CardRecipe";
 import Filtrado from "./Filtrado";
@@ -97,7 +98,7 @@ function Home() {
               <CardRecipe
                 id={r.id}
                 name={r.name}
-                img={r.img}
+                img={r.img ? r.img : plate}
                 type={r.type ? r.type : []}
                 diets={r.diets}
                 healthScore={r.score}

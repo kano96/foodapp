@@ -24,7 +24,11 @@ const getApi = async () => {
 
 const getData = async () => {
   const data = await Recipe.findAll({
-    include: Diet,
+    include: {
+      model: Diet,
+      attributes: ["name"],
+      through: { attributes: [] },
+    },
   });
 
   return data;

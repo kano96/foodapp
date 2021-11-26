@@ -9,15 +9,24 @@ function CardRecipe({ name, img, type, diets, healthScore, id }) {
       </Link>
       <img src={img} alt="imagen" />
       <h4>{healthScore}</h4>
-      <div className="types">
-        {type.map((t) => (
-          <p key={`${name}${t}`}>{t}</p>
-        ))}
-      </div>
+      {type.length ? (
+        <div className="types">
+          {type.map((t) => (
+            <p key={`${name}${t}`}>{t}</p>
+          ))}
+        </div>
+      ) : (
+        ""
+      )}
+
       <div className="diets">
-        {diets.map((d) => (
-          <p key={`${name}${d}`}>{d}</p>
-        ))}
+        {diets.map((d) => {
+          if (typeof d === "object") {
+            return <p key={`${name}${d.name}`}>{d.name}</p>;
+          } else {
+            return <p key={`${name}${d}`}>{d}</p>;
+          }
+        })}
       </div>
     </div>
   );
