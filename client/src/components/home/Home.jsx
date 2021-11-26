@@ -107,7 +107,7 @@ function Home() {
             ))
           : ""}
         {allrecipes.length && !recipes.length ? (
-          <h2>No hay resultdados</h2>
+          <h2>There are no results for this search</h2>
         ) : (
           ""
         )}

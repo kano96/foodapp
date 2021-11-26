@@ -44,7 +44,7 @@ const rootReducer = (state = initialState, action) => {
         diets: action.payload,
       };
     case GET_RECIPE:
-      const results = action.payload.length ? [] : action.payload;
+      const results = action.payload ? action.payload : [];
       return {
         ...state,
         recipes: results,
@@ -60,19 +60,19 @@ const rootReducer = (state = initialState, action) => {
         action.payload === "All"
           ? all
           : all.filter((r) => {
-              if (r.diets.length) {
-                for (let diet of r.diets) {
-                  if (typeof diet === "object") {
+              if (r.diets) {
+                if (typeof r.diets[0] === "object") {
+                  for (let diet of r.diets) {
                     if (diet.name.includes(action.payload.toLowerCase()))
                       return true;
-                    else return false;
-                  } else {
-                    if (
-                      diet.toLowerCase().includes(action.payload.toLowerCase())
-                    )
-                      return true;
-                    return false;
                   }
+                  return false;
+                } else {
+                  for (let diet of r.diets) {
+                    if (diet.includes(action.payload.toLowerCase()))
+                      return true;
+                  }
+                  return false;
                 }
               }
               return false;
