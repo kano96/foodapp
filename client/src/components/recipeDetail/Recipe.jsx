@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { getRecipeById } from "../../redux/actions";
 import CardRecipeDetail from "./CardRecipeDetail";
+import plate from "../../assets/plate.jpg";
 
 function Recipe() {
   const { id } = useParams();
@@ -17,8 +18,8 @@ function Recipe() {
         {Object.keys(rD).length ? (
           <CardRecipeDetail
             name={rD.name}
-            img={rD.img}
-            type={rD.type}
+            img={rD.img ? rD.img : plate}
+            type={rD.type ? rD.type : []}
             diets={rD.diets}
             score={rD.score}
             healthScore={rD.healthScore}

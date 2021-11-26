@@ -16,11 +16,22 @@ function CardRecipeDetail({
       <picture>
         <img src={img} alt="" />
       </picture>
-      <div className="tiposdeplatos">
-        {type.length && type.map((t) => <p key={t}>{t}</p>)}
-      </div>
+      {type.length ? (
+        <div className="tiposdeplatos">
+          {type.length && type.map((t) => <p key={t}>{t}</p>)}
+        </div>
+      ) : (
+        ""
+      )}
       <div className="tiposdedietas">
-        {diets.length && diets.map((d) => <p key={d}>{d}</p>)}
+        {diets.length &&
+          diets.map((d) => {
+            if (typeof d === "object") {
+              return <p key={d.name}>{d.name}</p>;
+            } else {
+              return <p key={d}>{d}</p>;
+            }
+          })}
       </div>
       <div className="scores">
         <p>Spoonacular score: {score}</p>

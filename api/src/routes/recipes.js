@@ -97,8 +97,8 @@ const getDBById = async (id) => {
 
 router.get("/recipes/:id", async (req, res) => {
   const { id } = req.params;
-  const num = parseInt(id);
-  if (num === NaN) {
+
+  if (id.includes("-")) {
     const result = await getDBById(id);
     return result
       ? res.status(200).send(result)
