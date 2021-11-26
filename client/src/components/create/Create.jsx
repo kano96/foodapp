@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Create.css";
+import axios from "axios";
 
 function Create() {
   const [form, setForm] = useState({
@@ -25,9 +26,7 @@ function Create() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
   const handleOnChangeDiet = function (e) {
-    e.preventDefault();
-    const index = form.diets.indexOf(e.target.name);
-    if (index === -1)
+    if (e.target.checked === true)
       setForm({ ...form, diets: [...form.diets, e.target.name] });
     else {
       setForm({
@@ -103,7 +102,7 @@ function Create() {
             type="checkbox"
             name="gluten free"
             id="gluten free"
-            onChange={handleOnChangeDiet}
+            onChange={(e) => handleOnChangeDiet(e)}
           />
           <label>Gluten Free</label>
         </div>
@@ -112,7 +111,7 @@ function Create() {
             type="checkbox"
             name="ketogenic"
             id="ketogenic"
-            onChange={handleOnChangeDiet}
+            onChange={(e) => handleOnChangeDiet(e)}
           />
           <label>Ketogenic</label>
         </div>
@@ -121,7 +120,7 @@ function Create() {
             type="checkbox"
             name="dairy free"
             id="dairy free"
-            onChange={handleOnChangeDiet}
+            onChange={(e) => handleOnChangeDiet(e)}
           />
           <label>Dairy Free</label>
         </div>
@@ -130,7 +129,7 @@ function Create() {
             type="checkbox"
             name="vegetarian"
             id="vegetarian"
-            onChange={handleOnChangeDiet}
+            onChange={(e) => handleOnChangeDiet(e)}
           />
           <label>Vegetarian</label>
         </div>
@@ -139,7 +138,7 @@ function Create() {
             type="checkbox"
             name="lacto"
             id="lacto"
-            onChange={handleOnChangeDiet}
+            onChange={(e) => handleOnChangeDiet(e)}
           />
           <label>Lacto-Vegetarian</label>
         </div>
@@ -148,7 +147,7 @@ function Create() {
             type="checkbox"
             name="vegan"
             id="vegan"
-            onChange={handleOnChangeDiet}
+            onChange={(e) => handleOnChangeDiet(e)}
           />
           <label>Vegan</label>
         </div>
@@ -157,7 +156,7 @@ function Create() {
             type="checkbox"
             name="pescatarian"
             id="pescatarian"
-            onChange={handleOnChangeDiet}
+            onChange={(e) => handleOnChangeDiet(e)}
           />
           <label>Pescetarian</label>
         </div>
@@ -166,7 +165,7 @@ function Create() {
             type="checkbox"
             name="paleolithic"
             id="paleolithic"
-            onChange={handleOnChangeDiet}
+            onChange={(e) => handleOnChangeDiet(e)}
           />
           <label>Paleo</label>
         </div>
@@ -175,7 +174,7 @@ function Create() {
             type="checkbox"
             name="primal"
             id="primal"
-            onChange={handleOnChangeDiet}
+            onChange={(e) => handleOnChangeDiet(e)}
           />
           <label>Primal</label>
         </div>
@@ -184,12 +183,17 @@ function Create() {
             type="checkbox"
             name="fodmap friendly"
             id="fodmap friendly"
-            onChange={handleOnChangeDiet}
+            onChange={(e) => handleOnChangeDiet(e)}
           />
           <label>Low FODMAP</label>
         </div>
         <div className="dietscheck">
-          <input type="checkbox" name="whole 30" id="whole 30" />
+          <input
+            type="checkbox"
+            name="whole 30"
+            id="whole 30"
+            onChange={(e) => handleOnChangeDiet(e)}
+          />
           <label>Whole30</label>
         </div>
         {errors.diets.length ? (
