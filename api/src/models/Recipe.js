@@ -19,9 +19,7 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    img: {
-      type: DataTypes.STRING,
-    },
+
     score: {
       type: DataTypes.REAL,
     },

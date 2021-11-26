@@ -8,11 +8,26 @@
     "title title"
     "form diets";
 }
-
-.createPage h1 {
+.formheader {
   grid-area: title;
   margin: 0;
-  padding-top: 10px;
+  padding-top: 5px;
+}
+.formheader h1 {
+  margin: 0;
+}
+.alertMessage {
+  font-weight: bold;
+  border: 1px solid black;
+  color: red;
+  border-radius: 25px;
+}
+.alert {
+  color: red;
+  font-size: x-small;
+  padding: 0;
+  margin: 0;
+  align-self: flex-start;
 }
 .form {
   grid-area: form;

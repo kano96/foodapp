@@ -98,9 +98,9 @@ function Home() {
                 id={r.id}
                 name={r.name}
                 img={r.img}
-                type={r.type}
+                type={r.type ? r.type : []}
                 diets={r.diets}
-                score={r.score}
+                healthScore={r.score}
                 key={r.name}
               />
             ))

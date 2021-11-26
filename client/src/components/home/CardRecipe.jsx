@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function CardRecipe({ name, img, type, diets, score, id }) {
+function CardRecipe({ name, img, type, diets, healthScore, id }) {
   return (
     <div className="Card">
       <Link to={`/home/recipe/${id}`}>
         <h3>{name}</h3>
       </Link>
       <img src={img} alt="imagen" />
-      <h4>{score}</h4>
+      <h4>{healthScore}</h4>
       <div className="types">
         {type.map((t) => (
           <p key={`${name}${t}`}>{t}</p>

@@ -4,27 +4,21 @@ const { Recipe, Diet } = require("../db");
 const router = Router();
 
 router.post("/recipe", async (req, res) => {
-  const { name, summary, score, healthScore, diets, steps, img } = req.body;
+  const { name, summary, score, healthScore, diets, steps } = req.body;
 
-  try {
-    const newRecipe = await Recipe.create({
-      name,
-      summary,
-      img,
-      score: parseFloat(score),
-      healthScore: parseFloat(healthScore),
-      steps,
+  Recipe.create({
+    name,
+    summary,
+    score: parseFloat(score),
+    healthScore: parseFloat(healthScore),
+    steps,
+  })
+    .then((newRecipe) => newRecipe.setDiets(diets))
+    .then((r) => res.json({ msg: "success" }))
+    .catch((e) => {
+      console.log(e);
+      return res.status(500).send({ msg: "Algo salió mal" });
     });
-    const diet = await Diet.findAll({
-      where: {
-        name: diets,
-      },
-    });
-    newRecipe.addDiet(diet);
-    return res.send({ msg: "success" });
-  } catch (e) {
-    return res.send({ msg: e });
-  }
 });
 
 module.exports = router;
