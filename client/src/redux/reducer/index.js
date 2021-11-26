@@ -62,10 +62,18 @@ const rootReducer = (state = initialState, action) => {
           : all.filter((r) => {
               if (r.diets.length) {
                 for (let diet of r.diets) {
-                  if (diet.toLowerCase().includes(action.payload.toLowerCase()))
-                    return true;
+                  if (typeof diet === "object") {
+                    if (diet.name.includes(action.payload.toLowerCase()))
+                      return true;
+                    else return false;
+                  } else {
+                    if (
+                      diet.toLowerCase().includes(action.payload.toLowerCase())
+                    )
+                      return true;
+                    return false;
+                  }
                 }
-                return false;
               }
               return false;
             });
