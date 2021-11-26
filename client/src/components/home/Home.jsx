@@ -47,17 +47,18 @@ function Home() {
   return (
     <div className="main">
       <div className="title-main">
-        <h1>Recetas</h1>
+        <h1>Here you can find any recipe!</h1>
       </div>
       <div className="buscador">
         <Search />
       </div>
-      <div className="clear">
-        <button onClick={(e) => handleClear(e)}>
-          Mostrar todas las recetas
-        </button>
-      </div>
+
       <div className="filtersortingbuttons">
+        <div className="clear">
+          <button onClick={(e) => handleClear(e)}>
+            Mostrar todas las recetas
+          </button>
+        </div>
         <Filtrado />
         <Sorting
           onChange={(e) => {
@@ -81,17 +82,17 @@ function Home() {
         />
       </div>
 
-      <div className="paginas">
-        {total !== 0 && (
-          <Paginacion
-            total={total}
-            onChange={(page) => {
-              dispatch(changePage(page));
-            }}
-          />
-        )}
-      </div>
       <div className="recipes">
+        <div className="paginas">
+          {total !== 0 && (
+            <Paginacion
+              total={total}
+              onChange={(page) => {
+                dispatch(changePage(page));
+              }}
+            />
+          )}
+        </div>
         {!allrecipes.length && <h1>Cargando...</h1>}
         {recipes.length
           ? recipes.map((r) => (

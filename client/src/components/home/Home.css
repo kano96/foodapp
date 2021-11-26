@@ -1,8 +1,33 @@
 .main {
-  padding-top: 40px;
+  padding-top: 0px;
+  display: grid;
+  grid-template-columns: 0.5fr 1.5fr;
+  grid-template-rows: 0.1fr 0.1fr 3.8fr;
+  gap: 0px 7px;
+  grid-template-areas:
+    "title title"
+    "controllers search"
+    "controllers cards";
+}
+.title-main {
+  grid-area: title;
+  margin: 0;
+  padding: 0;
 }
 .filtersortingbuttons {
   display: flex;
   justify-content: center;
   gap: 15px;
+  grid-area: controllers;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 200px;
+}
+.paginas {
+  width: 100%;
+}
+.recipes {
+  grid-area: cards;
+  display: flex;
+  flex-wrap: wrap;
 }

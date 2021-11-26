@@ -1,0 +1,27 @@
+.Card {
+  display: grid;
+  grid-template-rows: 2fr 0.25fr 0.5fr 0.75fr;
+  grid-template-areas:
+    "imagen"
+    "nombre"
+    "platos"
+    "dietas";
+  max-height: 500px;
+  gap: 20px;
+}
+.Card img {
+  grid-area: imagen;
+}
+.cardTitle {
+  grid-area: nombre;
+  text-decoration: none;
+  font-size: 0.8rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+.Card .types {
+  grid-area: platos;
+}
+.Card .diets {
+  grid-area: dietas;
+}

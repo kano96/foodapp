@@ -1,14 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./CardRecipe.css";
 
 function CardRecipe({ name, img, type, diets, healthScore, id }) {
   return (
     <div className="Card">
-      <Link to={`/home/recipe/${id}`}>
+      <Link to={`/home/recipe/${id}`} className="cardTitle">
         <h3>{name}</h3>
       </Link>
       <img src={img} alt="imagen" />
-      <h4>{healthScore}</h4>
+
       {type.length ? (
         <div className="types">
           {type.map((t) => (
@@ -27,6 +28,7 @@ function CardRecipe({ name, img, type, diets, healthScore, id }) {
             return <p key={`${name}${d}`}>{d}</p>;
           }
         })}
+        <h4>{healthScore}</h4>
       </div>
     </div>
   );
