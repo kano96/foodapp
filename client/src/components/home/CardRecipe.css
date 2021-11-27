@@ -1,27 +1,62 @@
 .Card {
-  display: grid;
-  grid-template-rows: 2fr 0.25fr 0.5fr 0.75fr;
-  grid-template-areas:
-    "imagen"
-    "nombre"
-    "platos"
-    "dietas";
-  max-height: 500px;
-  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  position: relative;
+  align-items: center;
+  text-align: center;
+  background-color: burlywood;
+  border-radius: 25px;
+  padding-bottom: 20px;
+  text-decoration: none;
+  color: black;
+}
+
+.Card:hover {
+  transform: scale(1.02);
+}
+.Card div {
+  text-align: center;
 }
 .Card img {
-  grid-area: imagen;
+  width: 300px;
+  border-radius: 25px 25px 0 0;
+  margin: 0;
 }
 .cardTitle {
-  grid-area: nombre;
   text-decoration: none;
-  font-size: 0.8rem;
-  display: flex;
-  flex-wrap: wrap;
+  font-size: 1rem;
+  align-self: center;
+  padding: 0 15px;
 }
-.Card .types {
-  grid-area: platos;
+.cardTitle:hover {
+  color: brown;
 }
+.Card .types,
 .Card .diets {
-  grid-area: dietas;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
+  gap: 10px;
+  padding: 0 15px;
+}
+
+.typestitle,
+.diettitle {
+  width: 100%;
+  font-weight: bold;
+  margin: 5px 0 0;
+  font-size: 0.8rem;
+}
+.Card .healthScore {
+  width: 100%;
+  margin: 0;
+  font-size: 0.8rem;
+}
+.dietsname,
+.typename {
+  margin: 0;
+  font-size: 0.7rem;
 }

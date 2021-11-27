@@ -18,7 +18,9 @@ function CardRecipeDetail({
       </picture>
       {type.length ? (
         <div className="tiposdeplatos">
-          {type.length && type.map((t) => <p key={t}>{t}</p>)}
+          {type.map((t) => (
+            <p key={t}>{t}</p>
+          ))}
         </div>
       ) : (
         ""

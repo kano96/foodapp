@@ -30,4 +30,7 @@
   grid-area: cards;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  padding-bottom: 20px;
 }

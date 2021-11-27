@@ -105,7 +105,7 @@ router.get("/recipes/:id", async (req, res) => {
       : res.status(404).send({ msg: "No se encontró la receta" });
   } else {
     try {
-      const result = await getApiById(num);
+      const result = await getApiById(id);
       return result
         ? res.status(200).send(result)
         : res.status(404).send({ msg: "No se encontró la receta" });
