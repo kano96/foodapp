@@ -5,7 +5,7 @@ function SortingByScore({ onChange }) {
     <div className="sortingOptions">
       <label>Ordenar por puntuación</label>
       <select onChange={(e) => onChange(e)}>
-        <option disabled="disabled" defaultValue value="none">
+        <option disabled="disabled" selected value="none">
           -----
         </option>
         <option value="asc">Ascendete</option>

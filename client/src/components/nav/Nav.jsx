@@ -12,7 +12,7 @@ const Nav = () => {
         </Link>
       </div>
       <div className="nav">
-        <NavLink to="/home/create" style={{ textDecoration: "none" }}>
+        <NavLink to="/home/create" className="createRecipeLink">
           Create Recipe
         </NavLink>
       </div>

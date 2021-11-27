@@ -2,14 +2,23 @@
   display: flex;
   align-items: center;
   height: 80px;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 0 200px;
 
   background-color: chocolate;
 }
 .logo {
-  width: 60px;
-  height: 60px;
+  width: 80px;
 }
 .logo img {
   width: 100%;
+}
+.createRecipeLink {
+  text-decoration: none;
+  font-weight: bold;
+  color: blanchedalmond;
+  font-size: 1.3rem;
+}
+.createRecipeLink:hover {
+  color: black;
 }
