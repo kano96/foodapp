@@ -1,9 +1,10 @@
 import React from "react";
+import "./Sorting.css";
 
 function Sorting({ onChange }) {
   return (
     <div className="sortingOptions">
-      <label>Ordenar por nombre: </label>
+      <label>Sort by Name: </label>
       <select
         className="sort"
         onChange={(e) => {
@@ -13,8 +14,8 @@ function Sorting({ onChange }) {
         <option disabled="disabled" selected value="none">
           -----
         </option>
-        <option value="asc">De A a Z</option>
-        <option value="des">De Z a A</option>
+        <option value="asc">A to Z</option>
+        <option value="des">Z to A</option>
       </select>
     </div>
   );

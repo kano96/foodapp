@@ -1,23 +1,31 @@
 .pagination {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin: 0;
   text-align: center;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-top: 15px;
+}
+.pagination p {
+  width: fit-content;
 }
 .paginas {
   display: flex;
   justify-content: center;
-  gap: 5px;
 }
 .activepage {
-  color: blue;
-  border-bottom: 1px solid blue;
+  border: 1px solid rgba(128, 128, 128, 0.459);
   cursor: default;
-  padding: 0;
+  padding: 5px 5px;
   margin: 0;
+  font-weight: bold;
+  background-color: rgba(128, 128, 128, 0.226);
 }
 .inactivepage {
   cursor: pointer;
-  padding: 0;
+  border: 1px solid rgba(128, 128, 128, 0.301);
+  padding: 5px 5px;
   margin: 0;
 }

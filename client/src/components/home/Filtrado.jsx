@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { filtrar, changePage } from "../../redux/actions/index";
+import "./Filtrado.css";
 
 function Filtrado() {
   const dispatch = useDispatch();
@@ -14,9 +15,9 @@ function Filtrado() {
 
   return (
     <div className="filterSection">
-      <label htmlFor="filter">Filtrar por tipo de dieta: </label>
+      <label htmlFor="filter">Filter by type of diet: </label>
       <select onChange={(e) => handleOnChange(e)}>
-        <option value="All">Sin filtro</option>
+        <option value="All">No filter</option>
         <option value="gluten free">Gluten Free</option>
         <option value="ketogenic">Ketogenic</option>
         <option value="dairy free">Dairy Free</option>

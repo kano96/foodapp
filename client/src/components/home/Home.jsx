@@ -55,9 +55,7 @@ function Home() {
 
       <div className="filtersortingbuttons">
         <div className="clear">
-          <button onClick={(e) => handleClear(e)}>
-            Mostrar todas las recetas
-          </button>
+          <button onClick={(e) => handleClear(e)}>Show all recipes</button>
         </div>
         <Filtrado />
         <Sorting
@@ -112,6 +110,16 @@ function Home() {
         ) : (
           ""
         )}
+        <div className="paginas">
+          {total !== 0 && (
+            <Paginacion
+              total={total}
+              onChange={(page) => {
+                dispatch(changePage(page));
+              }}
+            />
+          )}
+        </div>
       </div>
     </div>
   );

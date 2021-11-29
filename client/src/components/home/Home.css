@@ -1,12 +1,12 @@
 .main {
   padding-top: 0px;
   display: grid;
-  grid-template-columns: 0.5fr 1.5fr;
+  grid-template-columns: 0.4fr 1.6fr;
   grid-template-rows: 0.1fr 0.1fr 3.8fr;
-  gap: 0px 7px;
+
   grid-template-areas:
-    "title title"
-    "controllers search"
+    "blank title"
+    "blank search"
     "controllers cards";
 }
 .title-main {
@@ -16,12 +16,15 @@
 }
 .filtersortingbuttons {
   display: flex;
-  justify-content: center;
   gap: 15px;
   grid-area: controllers;
   flex-direction: column;
   justify-content: flex-start;
-  padding-top: 200px;
+  flex-wrap: wrap;
+  padding-left: 10px;
+  padding-top: 50px;
+  border-top: 1px solid rgba(128, 128, 128, 0.383);
+  border-right: 1px solid rgba(128, 128, 128, 0.383);
 }
 .paginas {
   width: 100%;
@@ -31,6 +34,16 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 40px;
+  gap: 15px 40px;
   padding-bottom: 20px;
+  border-top: 1px solid rgba(128, 128, 128, 0.383);
+}
+.buscador {
+  grid-area: search;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.clear button {
+  padding: 10px;
 }

@@ -22,9 +22,6 @@ function Paginacion({ total, onChange }) {
   };
   return (
     <div className="pagination">
-      <p>
-        Página {actualPage} de {total}
-      </p>
       <div className="paginas">{pages()}</div>
     </div>
   );
