@@ -6,9 +6,9 @@ const Landing = () => {
   return (
     <div className="land-cont">
       <div className="landcard">
-        <h1>Bienvenido al mejor sitio de Recetas</h1>
+        <h1>Welcome to my Food App</h1>
         <Link to="/home" className="landbutton">
-          <button>Ir al Sitio</button>
+          <button>Go to Site</button>
         </Link>
       </div>
     </div>
