@@ -1,0 +1,9 @@
+.recipedetailpage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cardrecipedetail {
+  height: fit-content;
+  width: 80%;
+}

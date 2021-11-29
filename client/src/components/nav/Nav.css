@@ -13,7 +13,11 @@
 .logo img {
   width: 100%;
 }
-.createRecipeLink {
+.nav {
+  display: flex;
+  gap: 15px;
+}
+.navLink {
   text-decoration: none;
   font-weight: bold;
   color: blanchedalmond;

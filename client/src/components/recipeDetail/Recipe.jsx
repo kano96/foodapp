@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getRecipeById } from "../../redux/actions";
 import CardRecipeDetail from "./CardRecipeDetail";
 import plate from "../../assets/plate.jpg";
+import "./Recipe.css";
 
 function Recipe() {
   const { id } = useParams();
