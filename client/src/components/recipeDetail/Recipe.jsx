@@ -9,7 +9,7 @@ import "./Recipe.css";
 function Recipe() {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const rD = useSelector((state) => state.recipeDetail);
+  let rD = useSelector((state) => state.recipeDetail);
   useEffect(() => {
     dispatch(getRecipeById(id));
   }, [dispatch, id]);
