@@ -36,7 +36,7 @@
 .form form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
   align-items: flex-end;
 
   width: 100%;
@@ -50,8 +50,18 @@
   align-self: flex-start;
   font-weight: bold;
 }
+.forminput input {
+  padding: 5px;
+  font-size: 15px;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid rgba(128, 128, 128, 0.719);
+}
 .forminput textarea {
   resize: none;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid rgba(128, 128, 128, 0.719);
 }
 
 .diets {
@@ -60,4 +70,17 @@
   grid-area: diets;
 
   align-items: flex-start;
+}
+.formbutton button {
+  background-color: #d2691e;
+  border: none;
+  padding: 10px 15px;
+  color: blanchedalmond;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.formbutton button:hover {
+  background-color: rgb(219, 133, 71);
+  color: rgb(221, 204, 180);
 }
